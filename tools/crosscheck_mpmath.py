@@ -5,8 +5,10 @@
 For each .sqpk it recomputes, at `dps` decimal digits, the containment slack (min over vertices
 of min(x, y, s-x, s-y)), the bounding side, and the minimum SAT separation over every pair
 whose centres are closer than sqrt(2) (projection of all 8 vertices on the 4 edge normals; this
-is deliberately a different formulation from the closed form used in verify/). It compares
-min sep and containment slack with sqverify's JSON and reports the largest disagreement.
+is deliberately a different formulation from the closed form used in verify/). Each file gets its
+own verdict: valid if every vertex is inside the box (slack >= 0) and every pair is strictly
+separated (min sep > 0); the exit status is 1 if any file is invalid. With --json it also
+compares min sep and containment slack with sqverify's JSON and reports the largest disagreement.
 """
 
 from __future__ import annotations
@@ -106,9 +108,18 @@ def main() -> None:
     if a.out:
         Path(a.out).write_text(json.dumps(res, indent=1))
     print(f"crosscheck: {len(res)} files at {DPS} digits")
+    bad = 0
+    for r in res:
+        ok = mpmath.mpf(r["slack"]) >= 0 and (r["min_sep"] is None or mpmath.mpf(r["min_sep"]) > 0)
+        bad += not ok
+        print(f"  {r['path']}  n={r['n']} slack={r['slack']} min_sep={r['min_sep']} pair={r['pair']} "
+              f"{'valid' if ok else 'INVALID'}")
     if ref:
         print(f"max |min_sep(mpmath) - min_sep(sqverify)| = {worst[0]:.3e}  ({worst[1]})")
         print(f"max |slack(mpmath) - slack(sqverify)|     = {worst_slack[0]:.3e}  ({worst_slack[1]})")
+    print(f"summary: valid={len(res) - bad} invalid={bad}")
+    if bad:
+        sys.exit(1)
 
 
 if __name__ == "__main__":

@@ -7,7 +7,7 @@ certificate and the code to verify it.
 |---:|---|---|---:|---|
 | 155 | 12.952425406986414 | 12.952498944014007, Francisco Couzo's exact refinement of SQUISH's packing | 7.35e-5 | `records/n0155.*` |
 | 156 | 12.979172613722533 | 12.982082698516893, Evan Daniel's exact optimum of Francisco Couzo's packing | 2.91e-3 | `records/n0156.*` |
-| 211 | 14.996336774264797 | 14.997960704967362, Evan Daniel's exact optimum of Joost de Winter's packing | 1.62e-3 | `records/n0211.*` |
+| 211 | 14.996336737028043 | 14.997960704967362, Evan Daniel's exact optimum of Joost de Winter's packing | 1.62e-3 | `records/n0211.*` |
 
 "Previous best" is the best packing we could find in any public source at the time of writing
 (October 2026). We checked:
@@ -68,7 +68,9 @@ above n ≈ 130: they jam. We instead:
 3. **Polish exactly.** With all angles fixed, minimising the side is a linear program (the
    "cell" idea from [2]); iterate it to the exact local optimum.
 4. **Canonicalise.** At the same side, slide every square toward its corner, so blocks sit flush
-   and the structure is easy to read.
+   and the structure is easy to read. Loose squares that fit axis-aligned into a corner block are
+   straightened into it, and of the packing's 8 symmetric copies the one with the largest corner
+   block top-right is kept.
 
 ## References
 
