@@ -79,3 +79,7 @@ above n ≈ 130: they jam. We instead:
 6. N. Chaoweeraprasit (SQUISH), *squish-certs*, <https://github.com/itsnaka/squish-certs>.
 7. E. Friedman, "Packing Unit Squares in Squares: A Survey and New Results", *Electronic Journal of Combinatorics*, Dynamic Survey DS7, <https://www.combinatorics.org/ojs/index.php/eljc/article/view/DS7>.
 8. Y. Nakajima, *Soft-to-rigid packing*, <https://yoheinakajima.github.io/soft-to-rigid-packing/>, <https://github.com/yoheinakajima/soft-to-rigid-packing>.
+
+## License
+
+MIT, see `LICENSE`. This covers the verification code and our record packings and certificates.
