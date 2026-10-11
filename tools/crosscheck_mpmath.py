@@ -6,8 +6,12 @@ For each .sqpk it recomputes, at `dps` decimal digits, the containment slack (mi
 of min(x, y, s-x, s-y)), the bounding side, and the minimum SAT separation over every pair
 whose centres are closer than sqrt(2) (projection of all 8 vertices on the 4 edge normals; this
 is deliberately a different formulation from the closed form used in verify/). Each file gets its
-own verdict: valid if every vertex is inside the box (slack >= 0) and every pair is strictly
-separated (min sep > 0); the exit status is 1 if any file is invalid. With --json it also
+own verdict, at the tolerance of sqverify's precise check (TOL = 1e-14): "separated" if every vertex
+is inside the box and every pair is strictly apart (slack >= 0, min sep > 0), "contacts" if nothing
+overlaps or leaves the box by more than TOL (exact contacts written as decimals evaluate to about
+-1e-30, rounded published coordinates to about -1e-15; the exact certificate settles them), and
+"INVALID" otherwise. Files are listed when invalid, or all with --list; the exit status is 1 if any
+file is invalid. With --json it also
 compares min sep and containment slack with sqverify's JSON and reports the largest disagreement.
 """
 
@@ -25,6 +29,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from sqpk import read_sqpk
 
 DPS = 80
+TOL = mpmath.mpf("1e-14")  # sqverify --precise tolerance
 
 
 def check(path: str) -> dict:
@@ -85,6 +90,7 @@ def main() -> None:
     ap.add_argument("--dps", type=int, default=DPS)
     ap.add_argument("--jobs", type=int, default=8)
     ap.add_argument("--out", help="write per-file results as JSON")
+    ap.add_argument("--list", action="store_true", help="print every file's verdict, not only invalid ones")
     ap.add_argument("files", nargs="+")
     a = ap.parse_args()
     DPS = a.dps
@@ -108,17 +114,20 @@ def main() -> None:
     if a.out:
         Path(a.out).write_text(json.dumps(res, indent=1))
     print(f"crosscheck: {len(res)} files at {DPS} digits")
-    bad = 0
+    counts = {"separated": 0, "contacts": 0, "INVALID": 0}
     for r in res:
-        ok = mpmath.mpf(r["slack"]) >= 0 and (r["min_sep"] is None or mpmath.mpf(r["min_sep"]) > 0)
-        bad += not ok
-        print(f"  {r['path']}  n={r['n']} slack={r['slack']} min_sep={r['min_sep']} pair={r['pair']} "
-              f"{'valid' if ok else 'INVALID'}")
+        sl = mpmath.mpf(r["slack"])
+        ms = mpmath.mpf(r["min_sep"]) if r["min_sep"] is not None else mpmath.inf
+        v = "separated" if sl >= 0 and ms > 0 else "contacts" if sl >= -TOL and ms >= -TOL else "INVALID"
+        counts[v] += 1
+        if a.list or v == "INVALID":
+            print(f"  {r['path']}  n={r['n']} slack={r['slack']} min_sep={r['min_sep']} pair={r['pair']} {v}")
     if ref:
         print(f"max |min_sep(mpmath) - min_sep(sqverify)| = {worst[0]:.3e}  ({worst[1]})")
         print(f"max |slack(mpmath) - slack(sqverify)|     = {worst_slack[0]:.3e}  ({worst_slack[1]})")
-    print(f"summary: valid={len(res) - bad} invalid={bad}")
-    if bad:
+    print(f"summary: valid={counts['separated'] + counts['contacts']} (separated {counts['separated']}, "
+          f"contacts within {mpmath.nstr(TOL, 1)} {counts['contacts']}) invalid={counts['INVALID']}")
+    if counts["INVALID"]:
         sys.exit(1)
 
 

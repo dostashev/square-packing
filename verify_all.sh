@@ -15,5 +15,5 @@ echo "== 1. precise check + exact certificate"
 echo "== 2. shipped certificates, exact"
 ./build/verify/sqverify --check-cert records/*.sqcert
 echo "== 3. independent mpmath cross-check (80 digits)"
-if command -v uv > /dev/null 2>&1; then uv run python tools/crosscheck_mpmath.py records/*.sqpk
-else python3 tools/crosscheck_mpmath.py records/*.sqpk; fi
+if command -v uv > /dev/null 2>&1; then uv run python tools/crosscheck_mpmath.py --list records/*.sqpk
+else python3 tools/crosscheck_mpmath.py --list records/*.sqpk; fi
