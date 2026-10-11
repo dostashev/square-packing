@@ -5,9 +5,9 @@ certificate and the code to verify it.
 
 | n | side *s* (ours) | previous best | improvement | files |
 |---:|---|---|---:|---|
-| 155 | 12.952425406986414 | 12.952498944014007, Francisco Couzo's exact refinement of SQUISH's packing | 7.35e-5 | `records/n0155.*` |
-| 156 | 12.979172613722533 | 12.982082698516893, Evan Daniel's exact optimum of Francisco Couzo's packing | 2.91e-3 | `records/n0156.*` |
-| 211 | 14.996336721602514 | 14.997960704967362, Evan Daniel's exact optimum of Joost de Winter's packing | 1.62e-3 | `records/n0211.*` |
+| 155 | 12.952425406958457 | 12.952498944014007, Francisco Couzo's exact refinement of SQUISH's packing | 7.35e-5 | `records/n0155.*` |
+| 156 | 12.979172613644427 | 12.982082698516893, Evan Daniel's exact optimum of Francisco Couzo's packing | 2.91e-3 | `records/n0156.*` |
+| 211 | 14.996336721336316 | 14.997960704967362, Evan Daniel's exact optimum of Joost de Winter's packing | 1.62e-3 | `records/n0211.*` |
 
 "Previous best" is the best packing we could find in any public source at the time of writing
 (October 2026). We checked:
@@ -71,6 +71,11 @@ above n ≈ 130: they jam. We instead:
    and the structure is easy to read. Loose squares that fit axis-aligned into a corner block are
    straightened into it, and of the packing's 8 symmetric copies the one with the largest corner
    block top-right is kept.
+5. **Exact optimum.** Read off which corner of which square touches which edge, solve that system of
+   polynomial equations to 60 digits, and check that no nearby motion shrinks the box (nonnegative
+   KKT multipliers). The stored packing is that optimum with the load-bearing squares scaled by
+   1 + 1e-20, so every pair is strictly apart; the sides in the table are rounded up, and the files
+   give all 60 digits.
 
 ## References
 
