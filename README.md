@@ -11,6 +11,8 @@ certificate and the code to verify it.
 | 175 | 13.764174317486597 | 13.767119024198364, Francisco Couzo's packing (seeded from Ryan Xu's, exact optimum from Evan Daniel's solver) | 2.94e-3 | `records/n0175.*` |
 | 232 | 15.764174317486597 | 15.767428349941842, Nate Chaoweeraprasit's (SQUISH) composition | 3.25e-3 | `records/n0232.*` |
 | 264 | 16.774735132387833 | 16.778174593052023, Göbel's pattern 9 + (11/2)√2 | 3.44e-3 | `records/n0264.*` |
+| 176 | 13.808663234386957 | 13.812856253277056, Nate Chaoweeraprasit's (SQUISH) composition | 4.19e-3 | `records/n0176.*` |
+| 204 | 14.808663234386957 | 14.822875655532295 = 27/2 + √7/2, David Ellsworth's table (extending Erich Friedman's s(86)) | 1.42e-2 | `records/n0204.*` |
 
 "Previous best" is the best packing we could find in any public source at the time of writing
 (October 2026). We checked:
@@ -80,7 +82,7 @@ above n ≈ 130: they jam. We instead:
    1 + 1e-20, so every pair is strictly apart; the sides in the table are rounded up, and the files
    give all 60 digits.
 
-### Compositions (175, 232, 264)
+### Compositions (175, 232, 264, 176, 204)
 
 Many records are compositions: rectangles of n unit squares whose sides differ by an integer d,
 placed in two opposite corners of the box, with the rest filled by aligned squares. David
@@ -91,6 +93,9 @@ it, then searched for better rectangles with the same GPU soft-to-rigid method r
 box. It found 38 unit squares in an (h + 2) × h rectangle with h = 5.7641743…. Used in place of
 s(50)'s piece, it gives 175. Next to a 76-square piece of Erich Friedman's s(85) it gives 232, and
 next to a 93-square piece of Joost de Winter's s(126) (Evan Daniel's exact optimum) it gives 264.
+A second search, started from corner staircases, found 44 unit squares in an (h + 3) × h
+rectangle with h = 5.8086632…. Next to the 38-square piece it gives 176, and two copies of it give
+204.
 Each composite is then taken to the exact optimum of its contact topology, as in step 5.
 
 ## References
