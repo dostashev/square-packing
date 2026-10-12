@@ -11,14 +11,15 @@ certificate and the code to verify it.
 | 175 | 13.764174317486597 | 13.767119024198364, Francisco Couzo's packing (seeded from Ryan Xu's, exact optimum from Evan Daniel's solver) | 2.94e-3 | `records/n0175.*` |
 | 232 | 15.764174317486597 | 15.767428349941842, Nate Chaoweeraprasit's (SQUISH) composition | 3.25e-3 | `records/n0232.*` |
 | 264 | 16.774735132387833 | 16.778174593052023, Göbel's pattern 9 + (11/2)√2 | 3.44e-3 | `records/n0264.*` |
-| 176 | 13.808663234386957 | 13.812856253277056, Nate Chaoweeraprasit's (SQUISH) composition | 4.19e-3 | `records/n0176.*` |
+| 176 | 13.795872318436408 | 13.807637226802280, Francisco Couzo's packing (seeded from our earlier 176) | 1.18e-2 | `records/n0176.*` |
 | 204 | 14.808663234386957 | 14.822875655532295 = 27/2 + √7/2, David Ellsworth's table (extending Erich Friedman's s(86)) | 1.42e-2 | `records/n0204.*` |
 | 303 | 17.909958291069908 | 17.913065462738532, Evan Daniel's exact optimum of Nate Chaoweeraprasit's (SQUISH) packing | 3.11e-3 | `records/n0303.*` |
 | 129 | 11.870013850404465 | 11.872029849081180, Evan Daniel's exact optimum (display-regularized) on the jlevy/squares register | 2.02e-3 | `records/n0129.*` |
 
-Since then, Francisco Couzo has improved two of these, starting from our packings [4]: 156 to
-12.979165853835 and 176 to 13.807637227056 (franciscouzo/square-packing `e9eb44b`, 2026-10-12). The
-files here remain valid, certified upper bounds.
+Since then, Francisco Couzo has improved our 156 to 12.979165853835, starting from our packing [4]
+(franciscouzo/square-packing `e9eb44b`, 2026-10-12); the file here remains a valid, certified upper
+bound. He also improved our first 176 (13.808663234387, a composition) to 13.807637227056; the 176
+here is a later, lower packing of ours (see below).
 
 "Previous best" is the best packing we could find in any public source at the time of writing
 (October 2026). We checked:
@@ -101,11 +102,16 @@ box. It found 38 unit squares in an (h + 2) × h rectangle with h = 5.7641743…
 s(50)'s piece, it gives 175. Next to a 76-square piece of Erich Friedman's s(85) it gives 232, and
 next to a 93-square piece of Joost de Winter's s(126) (Evan Daniel's exact optimum) it gives 264.
 A second search, started from corner staircases, found 44 unit squares in an (h + 3) × h
-rectangle with h = 5.8086632…. Next to the 38-square piece it gives 176, and two copies of it give
-204.
+rectangle with h = 5.8086632…. Two copies of it give 204, and next to the 38-square piece it gave
+our first 176 (13.808663).
 The same kind of start found 62 unit squares in an (h + 6) × h rectangle with h = 5.9099583…; two
 copies of it give 303.
 Each composite is then taken to the exact optimum of its contact topology, as in step 5.
+
+Re-optimising the composites on the GPU with every square soft (from jittered copies, box held)
+changed one of them. In 176, the two pieces' tilted half-bands merged through the junction into a
+single V of 63 tilted squares, and the side fell from 13.808663 to 13.795872, below Francisco Couzo's
+13.807637.
 
 The library also gave 129 directly. One of its entries is 163 unit squares in an (h + 3) × h
 rectangle, cut from the s(302) record and re-optimised as a rectangle, with h = 11.8700139…. Dropping
