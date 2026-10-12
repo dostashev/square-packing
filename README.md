@@ -79,9 +79,10 @@ above n ≈ 130: they jam. We instead:
 3. **Polish exactly.** With all angles fixed, minimising the side is a linear program (the
    "cell" idea from [2]); iterate it to the exact local optimum.
 4. **Canonicalise.** At the same side, slide every square toward its corner, so blocks sit flush
-   and the structure is easy to read. Loose squares that fit axis-aligned into a corner block are
-   straightened into it, and of the packing's 8 symmetric copies the one with the largest corner
-   block top-right is kept.
+   and the structure is easy to read. An aligned square that can slide into a corner block
+   joins it, even if that block belongs to a different corner. Loose squares that fit
+   axis-aligned into a corner block are straightened into it. Of the packing's 8 symmetric copies,
+   the one with the largest corner block top-right is kept.
 5. **Exact optimum.** Read off which corner of which square touches which edge, solve that system of
    polynomial equations to 60 digits, and check that no nearby motion shrinks the box (nonnegative
    KKT multipliers). The stored packing is that optimum with the load-bearing squares scaled by
