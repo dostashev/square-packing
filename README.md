@@ -16,6 +16,10 @@ certificate and the code to verify it.
 | 303 | 17.909958291069908 | 17.913065462738532, Evan Daniel's exact optimum of Nate Chaoweeraprasit's (SQUISH) packing | 3.11e-3 | `records/n0303.*` |
 | 129 | 11.870013850404465 | 11.872029849081180, Evan Daniel's exact optimum (display-regularized) on the jlevy/squares register | 2.02e-3 | `records/n0129.*` |
 
+Since then, Francisco Couzo has improved two of these, starting from our packings [4]: 156 to
+12.979165853835 and 176 to 13.807637227056 (franciscouzo/square-packing `e9eb44b`, 2026-10-12). The
+files here remain valid, certified upper bounds.
+
 "Previous best" is the best packing we could find in any public source at the time of writing
 (October 2026). We checked:
 
