@@ -14,6 +14,7 @@ certificate and the code to verify it.
 | 176 | 13.808663234386957 | 13.812856253277056, Nate Chaoweeraprasit's (SQUISH) composition | 4.19e-3 | `records/n0176.*` |
 | 204 | 14.808663234386957 | 14.822875655532295 = 27/2 + √7/2, David Ellsworth's table (extending Erich Friedman's s(86)) | 1.42e-2 | `records/n0204.*` |
 | 303 | 17.909958291069908 | 17.913065462738532, Evan Daniel's exact optimum of Nate Chaoweeraprasit's (SQUISH) packing | 3.11e-3 | `records/n0303.*` |
+| 129 | 11.870013850404465 | 11.872029849081180, Evan Daniel's exact optimum (display-regularized) on the jlevy/squares register | 2.02e-3 | `records/n0129.*` |
 
 "Previous best" is the best packing we could find in any public source at the time of writing
 (October 2026). We checked:
@@ -83,7 +84,7 @@ above n ≈ 130: they jam. We instead:
    1 + 1e-20, so every pair is strictly apart; the sides in the table are rounded up, and the files
    give all 60 digits.
 
-### Compositions (175, 232, 264, 176, 204, 303)
+### Compositions and a cut-out (175, 232, 264, 176, 204, 303, 129)
 
 Many records are compositions: rectangles of n unit squares whose sides differ by an integer d,
 placed in two opposite corners of the box, with the rest filled by aligned squares. David
@@ -100,6 +101,11 @@ rectangle with h = 5.8086632…. Next to the 38-square piece it gives 176, and t
 The same kind of start found 62 unit squares in an (h + 6) × h rectangle with h = 5.9099583…; two
 copies of it give 303.
 Each composite is then taken to the exact optimum of its contact topology, as in step 5.
+
+The library also gave 129 directly. One of its entries is 163 unit squares in an (h + 3) × h
+rectangle, cut from the s(302) record and re-optimised as a rectangle, with h = 11.8700139…. Dropping
+its three rightmost unit columns leaves 129 squares in an h × h square, below the previous best for
+129, and step 5 then takes it to the exact optimum of its contact topology.
 
 ## References
 
