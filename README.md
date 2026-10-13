@@ -7,7 +7,7 @@ certificate and the code to verify it.
 |---:|---|---|---:|---|
 | 155 | 12.952425406958457 | 12.952498944014007, Francisco Couzo's exact refinement of SQUISH's packing | 7.35e-5 | `records/n0155.*` |
 | 156 | 12.979172613644427 | 12.982082698516893, Evan Daniel's exact optimum of Francisco Couzo's packing | 2.91e-3 | `records/n0156.*` |
-| 211 | 14.996336721336316 | 14.997960704967362, Evan Daniel's exact optimum of Joost de Winter's packing | 1.62e-3 | `records/n0211.*` |
+| 211 | 14.993694186583247 | 14.997960704967362, Evan Daniel's exact optimum of Joost de Winter's packing | 4.27e-3 | `records/n0211.*` |
 | 175 | 13.764174317486597 | 13.767119024198364, Francisco Couzo's packing (seeded from Ryan Xu's, exact optimum from Evan Daniel's solver) | 2.94e-3 | `records/n0175.*` |
 | 232 | 15.764174317486597 | 15.767428349941842, Nate Chaoweeraprasit's (SQUISH) composition | 3.25e-3 | `records/n0232.*` |
 | 264 | 16.774735132387833 | 16.778174593052023, Göbel's pattern 9 + (11/2)√2 | 3.44e-3 | `records/n0264.*` |
@@ -15,6 +15,7 @@ certificate and the code to verify it.
 | 204 | 14.808663234386957 | 14.822875655532295 = 27/2 + √7/2, David Ellsworth's table (extending Erich Friedman's s(86)) | 1.42e-2 | `records/n0204.*` |
 | 303 | 17.909958291069908 | 17.913065462738532, Evan Daniel's exact optimum of Nate Chaoweeraprasit's (SQUISH) packing | 3.11e-3 | `records/n0303.*` |
 | 129 | 11.870013850404465 | 11.872029849081180, Evan Daniel's exact optimum (display-regularized) on the jlevy/squares register | 2.02e-3 | `records/n0129.*` |
+| 241 | 15.987134249050841 | 15.988132439524991, Evan Daniel's exact optimum of Francisco Couzo's packing | 9.98e-4 | `records/n0241.*` |
 
 Since then, Francisco Couzo has improved our 156 to 12.979165853835, starting from our packing [4]
 (franciscouzo/square-packing `e9eb44b`, 2026-10-12); the file here remains a valid, certified upper
@@ -112,6 +113,11 @@ Re-optimising the composites on the GPU with every square soft (from jittered co
 changed one of them. In 176, the two pieces' tilted half-bands merged through the junction into a
 single V of 63 tilted squares, and the side fell from 13.808663 to 13.795872, below Francisco Couzo's
 13.807637.
+
+The same move works on published packings whose tilted squares form two separate bands. The 241
+record's bands (47 and 32 squares) merged into one V of 85, at 15.987134 against 15.988132. Joost de
+Winter's 211 (Evan Daniel's exact optimum, bands of 48 and 25) merged into a V of 76 at 14.993694,
+below our first 211 (14.996337, built by the band construction above), which this file replaces.
 
 The library also gave 129 directly. One of its entries is 163 unit squares in an (h + 3) × h
 rectangle, cut from the s(302) record and re-optimised as a rectangle, with h = 11.8700139…. Dropping
