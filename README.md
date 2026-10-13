@@ -16,6 +16,7 @@ certificate and the code to verify it.
 | 303 | 17.909958291069908 | 17.913065462738532, Evan Daniel's exact optimum of Nate Chaoweeraprasit's (SQUISH) packing | 3.11e-3 | `records/n0303.*` |
 | 129 | 11.870013850404465 | 11.872029849081180, Evan Daniel's exact optimum (display-regularized) on the jlevy/squares register | 2.02e-3 | `records/n0129.*` |
 | 241 | 15.987134249050841 | 15.988132439524991, Evan Daniel's exact optimum of Francisco Couzo's packing | 9.98e-4 | `records/n0241.*` |
+| 304 | 17.929427758075175 | 17.929565946848501, Nate Chaoweeraprasit's (SQUISH) packing as improved by Francisco Couzo | 1.38e-4 | `records/n0304.*` |
 
 Since then, Francisco Couzo has improved our 156 to 12.979165853835, starting from our packing [4]
 (franciscouzo/square-packing `e9eb44b`, 2026-10-12); the file here remains a valid, certified upper
@@ -118,6 +119,10 @@ The same move works on published packings whose tilted squares form two separate
 record's bands (47 and 32 squares) merged into one V of 85, at 15.987134 against 15.988132. Joost de
 Winter's 211 (Evan Daniel's exact optimum, bands of 48 and 25) merged into a V of 76 at 14.993694,
 below our first 211 (14.996337, built by the band construction above), which this file replaces.
+
+Softening every square of a composition can also help without forming a V. For 304, the composer's
+two-piece layout (17.939518) relaxed to 17.929428 as its aligned blocks shifted, below the previous best
+of 17.929566.
 
 The library also gave 129 directly. One of its entries is 163 unit squares in an (h + 3) × h
 rectangle, cut from the s(302) record and re-optimised as a rectangle, with h = 11.8700139…. Dropping
